@@ -1,5 +1,6 @@
 package io.devopsbox.yavaconf.cdk;
 
+import io.devopsbox.yavaconf.cdk.construct.EncryptedBucket;
 import software.amazon.awscdk.core.CfnTag;
 import software.amazon.awscdk.core.Construct;
 import software.amazon.awscdk.core.RemovalPolicy;
@@ -24,6 +25,8 @@ public class YavaconfAwsCdkBasicsStack extends Stack {
         s3BucketUsingL1Construct();
 
         s3BucketUsingL2Construct();
+
+        s3BucketUsingCustomConstruct();
     }
 
     private void s3BucketUsingL1Construct() {
@@ -45,5 +48,9 @@ public class YavaconfAwsCdkBasicsStack extends Stack {
                 .build());
 
         Tags.of(l2Bucket).add("Environment", "prod");
+    }
+
+    private void s3BucketUsingCustomConstruct() {
+        new EncryptedBucket(this, "yavaconf-custom-construct", "yavaconf-custom-construct");
     }
 }
