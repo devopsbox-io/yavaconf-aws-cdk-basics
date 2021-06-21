@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+aws cloudformation deploy --stack-name yavaconf-cfn --template-file s3.yaml
