@@ -1,6 +1,9 @@
 package io.devopsbox.yavaconf.cdk;
 
 import io.devopsbox.yavaconf.cdk.construct.EncryptedBucket;
+import io.devopsbox.yavaconf.cdk.construct.HelloWorldWebsite;
+import software.amazon.awscdk.core.CfnOutput;
+import software.amazon.awscdk.core.CfnOutputProps;
 import software.amazon.awscdk.core.CfnTag;
 import software.amazon.awscdk.core.Construct;
 import software.amazon.awscdk.core.RemovalPolicy;
@@ -27,6 +30,8 @@ public class YavaconfAwsCdkBasicsStack extends Stack {
         s3BucketUsingL2Construct();
 
         s3BucketUsingCustomConstruct();
+
+        s3HelloWorldWebsite();
     }
 
     private void s3BucketUsingL1Construct() {
@@ -52,5 +57,14 @@ public class YavaconfAwsCdkBasicsStack extends Stack {
 
     private void s3BucketUsingCustomConstruct() {
         new EncryptedBucket(this, "yavaconf-custom-construct", "yavaconf-custom-construct");
+    }
+
+
+    private void s3HelloWorldWebsite() {
+        HelloWorldWebsite website = new HelloWorldWebsite(this, "yavaconf-hello-world");
+
+        new CfnOutput(this, "websiteUrl", CfnOutputProps.builder()
+                .value(website.getUrl())
+                .build());
     }
 }
