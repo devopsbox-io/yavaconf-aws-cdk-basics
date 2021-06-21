@@ -1,4 +1,4 @@
-package com.myorg;
+package io.devopsbox.yavaconf.cdk;
 
 import software.amazon.awscdk.core.App;
 import com.fasterxml.jackson.databind.JsonNode;
