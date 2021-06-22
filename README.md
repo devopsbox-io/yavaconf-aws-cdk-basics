@@ -1,18 +1,65 @@
-# Welcome to your CDK Java project!
+# Prerequisites
 
-This is a blank project for Java development with CDK.
+- AWS CLI (tested with 1.19.33)
+- Terraform (tested with 0.14.3)
+- AWS CDK (tested with 1.109.0)
+- Java JDK (tested with openjdk 11.0.11)
+- NodeJS (required by AWS CDK, tested with v12.18.3)
+- Maven (tested with 3.6.3)
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+Should work with different versions of some prerequisites.
 
-It is a [Maven](https://maven.apache.org/) based project, so you can open this project with any Maven compatible Java IDE to build and run tests.
+# What's inside?
 
-## Useful commands
+- `src/main/java/io/devopsbox/yavaconf/sdk/S3Bucket.java` S3 bucket created/updated/deleted using AWS SDK
+- `cloudformation` sample CloudFormation template and two bash scripts: deploy-cfn and delete-cfn
+- `terraform` Terraform code that creates an S3 bucket
+- `src/main/java/io/devopsbox/yavaconf/cdk/YavaconfAwsCdkBasicsStack.java` start here for code that uses AWS CDK
 
- * `mvn package`     compile and run tests
- * `cdk ls`          list all stacks in the app
- * `cdk synth`       emits the synthesized CloudFormation template
- * `cdk deploy`      deploy this stack to your default AWS account/region
- * `cdk diff`        compare deployed stack with current state
- * `cdk docs`        open CDK documentation
+# Running
 
-Enjoy!
+## AWS SDK
+
+Run as a normal Java main for example from you IDE
+
+## CloudFormation
+
+```shell script
+cd cloudformation
+./deploy-cfn
+```
+
+## Terraform
+
+```shell script
+cd terraform
+terraform apply
+```
+
+## AWS CDK
+
+```shell script
+cdk deploy
+```
+
+# Destroying
+
+## CloudFormation
+
+```shell script
+cd cloudformation
+./delete-cfn
+```
+
+## Terraform
+
+```shell script
+cd terraform
+terraform destroy
+```
+
+## AWS CDK
+
+```shell script
+cdk destroy
+```
